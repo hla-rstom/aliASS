@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('brand_id')->constrained()->onDelete('cascade');
+            $table->foreignId('store_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('picture')->nullable();
             $table->integer('stock')->nullable();
             $table->decimal('length', 8, 2)->nullable();

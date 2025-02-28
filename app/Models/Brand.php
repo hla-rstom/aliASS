@@ -13,4 +13,17 @@ class Brand extends Model
         'name',
         'logo',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+    public function rentals()
+    {
+        return $this->hasMany(RackRental::class);
+    }
+    public function requests()
+    {
+        return $this->hasMany(RackRequest::class);
+    }
 }

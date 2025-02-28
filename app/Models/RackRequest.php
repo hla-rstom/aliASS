@@ -5,19 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class RackRequest extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'title',
-        'picture',
-        'brand_id',
-        'store_id',
-        'stock',
-        'length',
-        'width',
-        'height',
-    ];
+    protected $fillable = ['brand_id', 'store_id', 'requested_racks', 'status'];
 
     public function brand()
     {
