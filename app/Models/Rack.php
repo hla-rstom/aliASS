@@ -4,18 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Store;
 
 class Rack extends Model
 {
     use HasFactory;
-    protected $fillable = ['store_id', 'number', 'status'];
+
+    protected $guarded = ['id'];
+
+    protected $fillable = [
+        'store_id',
+        'name',
+        'volume',
+        'length',
+        'width',
+        'capacity',
+        'photo',
+        'price_per_day',
+        'price_per_week',
+        'price_per_month'
+    ];
 
     public function store()
     {
         return $this->belongsTo(Store::class);
-    }
-    public function rentals()
-    {
-        return $this->hasMany(RackRental::class);
     }
 }

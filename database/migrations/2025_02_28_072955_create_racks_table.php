@@ -14,8 +14,15 @@ return new class extends Migration
         Schema::create('racks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('store_id')->constrained()->onDelete('cascade');
-            $table->integer('number');
-            $table->string('status');
+            $table->integer('capacity');
+            $table->string('name');
+            $table->float('width');
+            $table->float('length');
+            $table->float('volume');
+            $table->decimal('price_per_day', 10, 2)->nullable();
+            $table->decimal('price_per_week', 10, 2)->nullable();
+            $table->decimal('price_per_month', 10, 2)->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }
