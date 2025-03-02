@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Store extends Model
 {
@@ -36,7 +37,7 @@ class Store extends Model
 
         static::creating(function ($store) {
             if (!$store->user_id) {
-                $store->user_id = \Auth::id();
+                $store->user_id = Auth::id();
             }
         });
     }
