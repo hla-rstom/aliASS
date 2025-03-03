@@ -1,0 +1,4 @@
+[09-Aug-2024 10:50:01 Asia/Kuala_Lumpur] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Log as Log because the name is already in use in /home/chatlaju/fulhive.com/app/Http/Controllers/WarehouseOutboundContoller.php on line 29
+[15-Aug-2024 14:28:55 Asia/Kuala_Lumpur] PHP Fatal error:  Cannot redeclare App\Http\Controllers\PackagingTemplateController::index() in /home/chatlaju/fulhive.com/app/Http/Controllers/PackagingTemplateController.php on line 30
+[27-Aug-2024 00:41:15 Asia/Kuala_Lumpur] PHP Fatal error:  Cannot use App\Models\User as User because the name is already in use in /home/chatlaju/fulhive.com/app/Http/Controllers/HomeController.php on line 13
+[27-Aug-2024 00:41:44 Asia/Kuala_Lumpur] PHP Fatal error:  Cannot use App\Models\Wallet as Wallet because the name is already in use in /home/chatlaju/fulhive.com/app/Http/Controllers/HomeController.php on line 13
