@@ -29,4 +29,9 @@ class Rack extends Model
     {
         return $this->belongsTo(Store::class);
     }
+    // request for racks
+    public function interests()
+    {
+        return $this->hasMany(Interest::class);
+    }
 }

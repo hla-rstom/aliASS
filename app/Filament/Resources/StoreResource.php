@@ -28,69 +28,72 @@ class StoreResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-        ->schema([
-            Section::make('Store Information')->schema([
-                TextInput::make('user_id')
-                    ->label('User ID')
-                    ->default(fn () => Auth::id())
-                    ->required()
-                    ->hidden(),
-
-                TextInput::make('name')
-                    ->label('Name')
-                    ->required(),
-                TextInput::make('address')
-                    ->label('Address')
-                    ->required(),
-                TextInput::make('city')
-                    ->label('City')
-                    ->required(),
-                TextInput::make('state')
-                    ->label('State')
-                    ->required(),
-                TextInput::make('zipcode')
-                    ->label('Zip Code')
-                    ->required(),
-                TextInput::make('town')
-                    ->label('Town')
-                    ->required(),
-                Select::make('region')
-                    ->label('Region')
-                    ->options([
-                        'north' => 'North',
-                        'south' => 'South',
-                        'east' => 'East',
-                        'west' => 'West',
-                        'central' => 'Central',
-                    ])
-                    ->required(),
-                Select::make('address_type')
-                    ->label('Address Type')
-                    ->options([
-                        'commercial' => 'Commercial',
-                        'residential' => 'Residential',
-                        'industrial' => 'Industrial',
-                    ])
-                    ->required(),
-            ])->columns(2),
-
-            Section::make('Location on Map')
             ->schema([
-                View::make('filament.forms.components.google-maps')
-                    ->columnSpan('full'),
+                Section::make('Store Information')->schema([
+                    TextInput::make('user_id')
+                        ->label('User ID')
+                        ->default(fn() => Auth::id())
+                        ->required()
+                        ->hidden(),
 
-                Hidden::make('latitude'),
-                Hidden::make('longitude'),
-            ])
-            ->columns(1),
-        ]);
+                    TextInput::make('name')
+                        ->label('Name')
+                        ->required(),
+                    TextInput::make('phone')
+                        ->label('Phone')
+                        ->required(),
+                    TextInput::make('address')
+                        ->label('Address')
+                        ->required(),
+                    TextInput::make('city')
+                        ->label('City')
+                        ->required(),
+                    TextInput::make('state')
+                        ->label('State')
+                        ->required(),
+                    TextInput::make('zipcode')
+                        ->label('Zip Code')
+                        ->required(),
+                    TextInput::make('town')
+                        ->label('Town')
+                        ->required(),
+                    Select::make('region')
+                        ->label('Region')
+                        ->options([
+                            'north' => 'North',
+                            'south' => 'South',
+                            'east' => 'East',
+                            'west' => 'West',
+                            'central' => 'Central',
+                        ])
+                        ->required(),
+                    Select::make('address_type')
+                        ->label('Address Type')
+                        ->options([
+                            'commercial' => 'Commercial',
+                            'residential' => 'Residential',
+                            'industrial' => 'Industrial',
+                        ])
+                        ->required(),
+                ])->columns(2),
+
+                Section::make('Location on Map')
+                    ->schema([
+                        View::make('filament.forms.components.google-maps')
+                            ->columnSpan('full'),
+
+                        Hidden::make('latitude'),
+                        Hidden::make('longitude'),
+                    ])
+                    ->columns(1),
+            ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                 TextColumn::make('name')
+                TextColumn::make('name')
                     ->label('Name')
                     ->searchable()
                     ->sortable(),
@@ -103,15 +106,16 @@ class StoreResource extends Resource
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('state')
-                ->label('State')
-                ->searchable()
-                ->sortable(),
+                    ->label('State')
+                    ->searchable()
+                    ->sortable(),
 
                 TextColumn::make('zipcode')
-                ->label('Zip Code')
-                ->searchable()
-                ->sortable(),
+                    ->label('Zip Code')
+                    ->searchable()
+                    ->sortable(),
 
+                TextColumn::make('phone')->sortable(),
             ])
             ->filters([
                 //
@@ -136,7 +140,7 @@ class StoreResource extends Resource
     public static function getRelations(): array
     {
         return [
-           RacksRelationManager::class,
+            RacksRelationManager::class,
         ];
     }
 

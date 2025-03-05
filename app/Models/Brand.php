@@ -26,4 +26,10 @@ class Brand extends Model
     {
         return $this->hasMany(RackRequest::class);
     }
+
+    //  brand_owner
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -39,4 +39,9 @@ class Interest extends Model
     {
         return $this->hasMany(Shipment::class);
     }
+
+    public function rentalAgreement()
+    {
+        return $this->hasOne(RentalAgreement::class);
+    }
 }

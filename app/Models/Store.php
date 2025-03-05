@@ -41,4 +41,9 @@ class Store extends Model
             }
         });
     }
+
+    public function interests()
+    {
+        return $this->hasMany(Interest::class);
+    }
 }

@@ -27,4 +27,9 @@ class Product extends Model
     {
         return $this->belongsTo(Store::class);
     }
+
+    public function shipmentItems()
+    {
+        return $this->hasMany(ShipmentItem::class);
+    }
 }

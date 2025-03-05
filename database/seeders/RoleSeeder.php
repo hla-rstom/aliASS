@@ -8,27 +8,64 @@ use Spatie\Permission\Models\Permission;
 
 class RoleSeeder extends Seeder
 {
+
     public function run()
     {
-        $superAdmin = Role::create(['name' => 'super-admin']);
-        $storeOwner = Role::create(['name' => 'store-owner']);
-        $brandOwner = Role::create(['name' => 'brand-owner']);
+        // Create roles
+        $admin = Role::firstOrCreate(['name' => 'admin']);
+        $brandOwner = Role::firstOrCreate(['name' => 'brand_owner']);
+        $storeOwner = Role::firstOrCreate(['name' => 'store_owner']);
 
+        // Define permissions
         $permissions = [
-            'manage stores',
-            'manage racks',
+            // Brand Owner Permissions
             'manage brands',
             'manage products',
-            'manage rentals',
-            'manage requests'
+            'view racks',
+            'request rental',
+            'manage agreements',
+            'track shipments',
+            'make payments',
+
+            // Store Owner Permissions
+            'manage store',
+            'manage racks',
+            'approve rentals',
+            'validate shipments',
+            'receive payments',
+
+            // Admin Permissions
+            'approve users',
+            'manage users',
+            'view all transactions',
+            'resolve disputes',
+            'access reports'
         ];
 
+        // Create permissions if they don’t exist
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
+            Permission::firstOrCreate(['name' => $permission]);
         }
 
-        $superAdmin->givePermissionTo(Permission::all());
-        $storeOwner->givePermissionTo(['manage stores', 'manage racks', 'manage requests']);
-        $brandOwner->givePermissionTo(['manage brands', 'manage products', 'manage rentals']);
+        // Assign permissions to roles
+        $brandOwner->syncPermissions([
+            'manage brands',
+            'manage products',
+            'view racks',
+            'request rental',
+            'manage agreements',
+            'track shipments',
+            'make payments',
+        ]);
+
+        $storeOwner->syncPermissions([
+            'manage store',
+            'manage racks',
+            'approve rentals',
+            'validate shipments',
+            'receive payments',
+        ]);
+
+        $admin->syncPermissions(Permission::all());
     }
 }
